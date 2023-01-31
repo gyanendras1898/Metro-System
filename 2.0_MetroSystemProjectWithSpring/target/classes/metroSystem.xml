@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id ="cardDao" class="com.gyan.persistence.CardDaoImpl"></bean>
+	<bean id="journeyDao" class="com.gyan.persistence.JourneyDaoImpl"></bean>
+	<bean id="stationDao" class="com.gyan.persistence.StationDaoImpl"></bean>
+	
+	<bean id ="cardService" class="com.gyan.service.CardServiceImpl">
+	<property name="cardDao" ref="cardDao"></property>
+	</bean>
+	<bean id="journeyService" class="com.gyan.service.JourneyServiceImpl">
+	<property name="journeyDao" ref="journeyDao"></property>
+	<property name="cardService" ref="cardService"></property>
+	</bean>
+	<bean id="stationService" class="com.gyan.service.StationServiceImpl">
+	<property name="stationDao" ref="stationDao"></property>
+	</bean>
+	
+	<bean id="metroPresentation" class="com.gyan.presentation.MetroPresentationImpl">
+		<property name="cardService" ref="cardService"></property>
+		<property name="journeyService" ref="journeyService"></property>
+		<property name="stationService" ref="stationService"></property>
+	</bean>
+	
+	
+
+</beans>
