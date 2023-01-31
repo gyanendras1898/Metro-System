@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="com.mysql.cj.jdbc.Driver"
+		p:url="jdbc:mysql://localhost:3306/metro_system_db" p:username="root"
+		p:password="admin">
+	</bean>
+
+	<bean id="cardDao" class="com.gyan.persistence.CardDaoImpl"
+		autowire="byType">
+	</bean>
+	<bean id="journeyDao" class="com.gyan.persistence.JourneyDaoImpl"
+		autowire="byType">
+	</bean>
+	<bean id="stationDao" class="com.gyan.persistence.StationDaoImpl"
+		autowire="byType">
+	</bean>
+
+	<bean id="cardService" class="com.gyan.service.CardServiceImpl"
+		autowire="byType">
+	</bean>
+	<bean id="journeyService"
+		class="com.gyan.service.JourneyServiceImpl" autowire="byType">
+	</bean>
+	<bean id="stationService"
+		class="com.gyan.service.StationServiceImpl" autowire="byType">
+	</bean>
+
+	<bean id="metroPresentation"
+		class="com.gyan.presentation.MetroPresentationImpl" autowire="byType">
+	</bean>
+
+	<bean id="userPresentation"
+		class="com.gyan.presentation.UserPresentaionImpl" autowire="byType">
+	</bean>
+
+
+</beans>
