@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/metro_system_db"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="admin"></property>
+	</bean>
+
+	<bean id="cardDao" class="com.gyan.persistence.CardDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="journeyDao" class="com.gyan.persistence.JourneyDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="stationDao" class="com.gyan.persistence.StationDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean id="cardService" class="com.gyan.service.CardServiceImpl">
+		<property name="cardDao" ref="cardDao"></property>
+	</bean>
+	<bean id="journeyService"
+		class="com.gyan.service.JourneyServiceImpl">
+		<property name="journeyDao" ref="journeyDao"></property>
+		<property name="cardService" ref="cardService"></property>
+	</bean>
+	<bean id="stationService"
+		class="com.gyan.service.StationServiceImpl">
+		<property name="stationDao" ref="stationDao"></property>
+	</bean>
+
+	<bean id="metroPresentation"
+		class="com.gyan.presentation.MetroPresentationImpl">
+		<property name="cardService" ref="cardService"></property>
+	</bean>
+	
+	<bean id="userPresentation"
+		class="com.gyan.presentation.UserPresentaionImpl">
+		<property name="cardService" ref="cardService"></property>
+		<property name="journeyService" ref="journeyService"></property>
+		<property name="stationService" ref="stationService"></property>
+	</bean>
+
+
+
+</beans>
