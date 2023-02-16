@@ -1,3 +1,5 @@
+Use this project to learn all the technology step by step and their importance.
+
 # Metro-System
 user have option to create account, login, swipe in, swipe out and get the fare between metro stations.
 
