@@ -26,7 +26,7 @@
 					<div class="form sign-in">
 					<spring:form action="./loginCheck" method="post">
 						<div class="input-group">
-							<i class='bx bxs-user'></i> <spring:input path="id" type="text"
+							<i class='bx bxs-user'></i> <spring:input path="id" type="number"
 								placeholder="User Id" />
 						</div>
 						<button>Sign in</button>
